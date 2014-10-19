@@ -43,7 +43,7 @@ ip6tables -A INPUT -j DROP
 
 
 PS3='Please enter your choice: '
-options=("Install iptables-persistent" "Restore your backups" "Quit")
+options=("Install iptables-persistent" "Save current iptables by persistent" "Restore your backups" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -55,6 +55,9 @@ do
 	            apt-get install iptables-persistent
 				service iptables-persistent start
 			fi
+            ;;
+        "Save current iptables by persistent")
+			service iptables-persistent save
             ;;
         "Restore your backups")
 			iptables-restore </iptablesExportBeforeCloudFlareSettings
